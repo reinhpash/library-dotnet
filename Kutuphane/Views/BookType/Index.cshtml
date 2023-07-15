@@ -1,21 +1,29 @@
 ﻿@model List<BookType>
 
-<h1>Book genres</h1>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Genre</th>
-        </tr>
-    </thead>
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Book genres</h1>
+        </div>
 
-    <tbody>
-        @foreach (var _bookType in Model)
-        {
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>@_bookType.ID</td>
-                <td>@_bookType.type</td>
+                <th>ID</th>
+                <th>Genre</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var _bookType in Model)
+            {
+                <tr>
+                    <td>@_bookType.ID</td>
+                    <td>@_bookType.type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
