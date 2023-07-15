@@ -1,0 +1,21 @@
+﻿@model List<BookType>
+
+<h1>Book genres</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var _bookType in Model)
+        {
+            <tr>
+                <td>@_bookType.ID</td>
+                <td>@_bookType.type</td>
+            </tr>
+        }
+    </tbody>
+</table>
