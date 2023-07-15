@@ -1,2 +1,2 @@
 # Library
- Learning dotnet
+learning dotnet with a simple library project
