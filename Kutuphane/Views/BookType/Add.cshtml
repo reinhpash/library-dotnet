@@ -5,8 +5,8 @@
         <h2 class="text-body">Add book genre</h2>
     </div>
     <div class="mb-3">
-        <label>Genre name:</label>
-        <input type ="text" class="form-control"/>
+        <label asp-for="type" class="p-0"></label>
+        <input asp-for="type" class="form-control" />
     </div>
     <button type="submit" class="btn btn-success" style="width:250px">Save</button>
     <a asp-controller="BookType" asp-action="Index" class="btn btn-danger" style="width:250px">Cancel</a>

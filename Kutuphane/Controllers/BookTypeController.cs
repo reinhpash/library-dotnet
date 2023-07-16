@@ -6,21 +6,29 @@ namespace Kutuphane.Controllers
 {
     public class BookTypeController : Controller
     {
-        private readonly LibraryDbContext _libraryDbContext;
+        private readonly LibraryDbContext libraryDbContext;
 
         public BookTypeController(LibraryDbContext ctx)
         {
-            _libraryDbContext = ctx;
+            libraryDbContext = ctx;
         }
         public IActionResult Index()
         {
-            List<BookType> bookTypes = _libraryDbContext.bookTypes.ToList();
+            List<BookType> bookTypes = libraryDbContext.bookTypes.ToList();
             return View(bookTypes);
         }
 
         public IActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(BookType _bookType)
+        {
+            libraryDbContext.bookTypes.Add(_bookType);
+            libraryDbContext.SaveChanges();
+            return RedirectToAction("Index","BookType");
         }
     }
 }
