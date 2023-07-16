@@ -30,6 +30,7 @@ namespace Kutuphane.Controllers
             {
                 libraryDbContext.bookTypes.Add(_bookType);
                 libraryDbContext.SaveChanges();
+                TempData["succses"] = "New genre successfully added!";
                 return RedirectToAction("Index", "BookType");
             }
             else
@@ -62,6 +63,7 @@ namespace Kutuphane.Controllers
             {
                 libraryDbContext.bookTypes.Update(_bookType);
                 libraryDbContext.SaveChanges();
+                TempData["succses"] = "Genre successfully edited!";
                 return RedirectToAction("Index", "BookType");
             }
             else
@@ -97,6 +99,7 @@ namespace Kutuphane.Controllers
 
             libraryDbContext.bookTypes.Remove(selectedBookType);
             libraryDbContext.SaveChanges();
+            TempData["succses"] = "Successfully deleted a genre!";
             return RedirectToAction("Index", "BookType");
         }
     }
