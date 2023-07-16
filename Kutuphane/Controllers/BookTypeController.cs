@@ -26,9 +26,17 @@ namespace Kutuphane.Controllers
         [HttpPost]
         public IActionResult Add(BookType _bookType)
         {
-            libraryDbContext.bookTypes.Add(_bookType);
-            libraryDbContext.SaveChanges();
-            return RedirectToAction("Index","BookType");
+            if (ModelState.IsValid)
+            {
+                libraryDbContext.bookTypes.Add(_bookType);
+                libraryDbContext.SaveChanges();
+                return RedirectToAction("Index", "BookType");
+            }
+            else
+            {
+                return View();
+            }
+
         }
     }
 }
