@@ -11,8 +11,9 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Genre</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
 
@@ -20,8 +21,9 @@
             @foreach (var _bookType in Model)
             {
                 <tr>
-                    <td>@_bookType.ID</td>
                     <td>@_bookType.type</td>
+                    <td><a asp-controller="BookType" asp-action="Edit" asp-route-ID="@_bookType.ID" type="button" class="btn btn-info d-block">Edit</a></td>
+                    <td><a asp-controller="BookType" asp-action="Delete" asp-route-ID="@_bookType.ID" type="button" class="btn btn-danger d-block">Delete</a></td>
                 </tr>
             }
         </tbody>

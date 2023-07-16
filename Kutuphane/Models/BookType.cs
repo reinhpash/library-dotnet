@@ -10,7 +10,7 @@ namespace Kutuphane.Models
         [Required]
         [MaxLength(25)]
         [DisplayName("Genre")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "The genre name cannot be empty, and it cannot contain special characters or numbers.")]
+        [RegularExpression(@"^[a-zA-Z\s-]+$", ErrorMessage = "The genre name cannot be empty, and it cannot contain special characters or numbers.")]
         public string type { get; set; } //Required Null olamayacağını belirtiyor
     }
 }

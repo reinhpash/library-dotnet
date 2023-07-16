@@ -1,0 +1,15 @@
+﻿@model BookType
+
+<form method="post">
+    <div class="p-3 mt-5">
+        <h2 class="text-danger">Are you sure you want to delete the <strong><u>'@Model.type'</u></strong> genre.</h2>
+    </div>
+    <div class="mb-3">
+        <label asp-for="type" class="p-0"></label>
+        <input asp-for="type" disabled class="form-control" />
+        <span asp-validation-for="type" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-danger" style="width:250px">Delete</button>
+    <a asp-controller="BookType" asp-action="Index" type="button" class="btn btn-success" style="width:250px">Cancel</a>
+
+</form>
