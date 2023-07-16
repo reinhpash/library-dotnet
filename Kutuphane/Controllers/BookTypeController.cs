@@ -17,5 +17,10 @@ namespace Kutuphane.Controllers
             List<BookType> bookTypes = _libraryDbContext.bookTypes.ToList();
             return View(bookTypes);
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
     }
 }
