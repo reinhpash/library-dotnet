@@ -6,15 +6,15 @@ namespace Kutuphane.Controllers
 {
     public class BookTypeController : Controller
     {
-        private readonly LibraryDbContext libraryDbContext;
+        private readonly IBookTypeRepository _bookTypeRepository;
 
-        public BookTypeController(LibraryDbContext ctx)
+        public BookTypeController(IBookTypeRepository ctx)
         {
-            libraryDbContext = ctx;
+            _bookTypeRepository = ctx;
         }
         public IActionResult Index()
         {
-            List<BookType> bookTypes = libraryDbContext.bookTypes.ToList();
+            List<BookType> bookTypes = _bookTypeRepository.GetAll().ToList();
             return View(bookTypes);
         }
 
@@ -28,8 +28,8 @@ namespace Kutuphane.Controllers
         {
             if (ModelState.IsValid)
             {
-                libraryDbContext.bookTypes.Add(_bookType);
-                libraryDbContext.SaveChanges();
+                _bookTypeRepository.Add(_bookType);
+                _bookTypeRepository.Save();
                 TempData["succses"] = "New genre successfully added!";
                 return RedirectToAction("Index", "BookType");
             }
@@ -45,7 +45,7 @@ namespace Kutuphane.Controllers
             if (ID == null || ID == 0)
                 return NotFound();
 
-            BookType? _bookType = libraryDbContext.bookTypes.Find(ID);
+            BookType? _bookType = _bookTypeRepository.Get(u=> u.ID == ID);
 
             if (_bookType == null)
                 return NotFound();
@@ -61,8 +61,8 @@ namespace Kutuphane.Controllers
         {
             if (ModelState.IsValid)
             {
-                libraryDbContext.bookTypes.Update(_bookType);
-                libraryDbContext.SaveChanges();
+                _bookTypeRepository.Edit(_bookType);
+                _bookTypeRepository.Save();
                 TempData["succses"] = "Genre successfully edited!";
                 return RedirectToAction("Index", "BookType");
             }
@@ -78,7 +78,7 @@ namespace Kutuphane.Controllers
             if (ID == null || ID == 0)
                 return NotFound();
 
-            BookType? _bookType = libraryDbContext.bookTypes.Find(ID);
+            BookType? _bookType = _bookTypeRepository.Get(u => u.ID == ID);
 
             if (_bookType == null)
                 return NotFound();
@@ -92,13 +92,13 @@ namespace Kutuphane.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            BookType? selectedBookType = libraryDbContext.bookTypes.Find(id);
+            BookType? selectedBookType = _bookTypeRepository.Get(u => u.ID == id);
 
             if (selectedBookType == null)
                 return NotFound();
 
-            libraryDbContext.bookTypes.Remove(selectedBookType);
-            libraryDbContext.SaveChanges();
+            _bookTypeRepository.Remove(selectedBookType);
+            _bookTypeRepository.Save();
             TempData["succses"] = "Successfully deleted a genre!";
             return RedirectToAction("Index", "BookType");
         }
