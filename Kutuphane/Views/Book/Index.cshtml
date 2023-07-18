@@ -1,0 +1,58 @@
+﻿@model List<Book>
+
+@if(TempData["succses"] != null)
+{
+    <div id="successMessage" class="alert alert-dismissible alert-success">
+        <strong>Well done! </strong>@TempData["succses"]
+    </div>
+}
+
+<script>
+    setTimeout(function () {
+        document.getElementById("successMessage").style.display = "none";
+    }, 2000);
+</script>
+
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Book</h1>
+        </div>
+
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Genre</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>$Price</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var _book in Model)
+            {
+                <tr>
+                    <td>@_book.Title</td>
+                    <td></td>
+                    <td>@_book.Description</td>
+                    <td>@_book.Author</td>
+                    <td>@_book.price</td>
+                    <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.bookID" type="button" class="btn btn-info d-block">Edit</a></td>
+                    <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.bookID" type="button" class="btn btn-danger d-block">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row pt-3 pb-2">
+        <div>
+            <a asp-controller="Book" asp-action="AddOrEdit" class="btn btn-light type" type="button">Add Book</a>
+        </div>
+    </div>
+</div>

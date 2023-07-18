@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kutuphane.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20230718130550_Book")]
-    partial class Book
+    [Migration("20230718150113_set2")]
+    partial class set2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace Kutuphane.Migrations
 
             modelBuilder.Entity("Kutuphane.Models.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("bookID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("bookID"));
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -44,30 +44,50 @@ namespace Kutuphane.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("genreID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("imageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("price")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("bookID");
+
+                    b.HasIndex("genreID");
 
                     b.ToTable("book");
                 });
 
             modelBuilder.Entity("Kutuphane.Models.BookType", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("genreID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("genreID"));
 
                     b.Property<string>("type")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("ID");
+                    b.HasKey("genreID");
 
                     b.ToTable("bookTypes");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Book", b =>
+                {
+                    b.HasOne("Kutuphane.Models.BookType", "bookType")
+                        .WithMany()
+                        .HasForeignKey("genreID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("bookType");
                 });
 #pragma warning restore 612, 618
         }
