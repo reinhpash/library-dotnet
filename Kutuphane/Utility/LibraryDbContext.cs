@@ -11,5 +11,6 @@ namespace Kutuphane.Utility
         }
 
         public DbSet<BookType> bookTypes { get; set; }
+        public DbSet<Book> book { get; set; }
     }
 }
