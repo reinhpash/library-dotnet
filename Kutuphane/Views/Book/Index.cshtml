@@ -39,12 +39,12 @@
             {
                 <tr>
                     <td>@_book.Title</td>
-                    <td></td>
+                    <td>@_book.bookType.type</td>
                     <td>@_book.Description</td>
                     <td>@_book.Author</td>
                     <td>@_book.price</td>
-                    <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.bookID" type="button" class="btn btn-info d-block">Edit</a></td>
-                    <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.bookID" type="button" class="btn btn-danger d-block">Delete</a></td>
+                    <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info d-block">Edit</a></td>
+                    <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger d-block">Delete</a></td>
                 </tr>
             }
         </tbody>

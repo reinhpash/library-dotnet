@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kutuphane.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20230718150113_set2")]
-    partial class set2
+    [Migration("20230718230126_rebuild")]
+    partial class rebuild
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

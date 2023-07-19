@@ -1,56 +1,74 @@
 ﻿@model Book
 
 <form method="post" enctype="multipart/form-data">
-    <div class="p-3 mt-5">
-        <h2 class="text-body">@(Model == null ? "Add book" : "Edit Book")</h2>
+    <input asp-for="imageUrl" hidden/>
+
+    <div class="row">
+        <div class="col-10">
+
+            <div class="p-3 mt-5">
+                <h2 class="text-body">@(Model == null ? "Add book" : "Edit Book")</h2>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Title" class="p-0"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="genreID" class="p-0">Genre</label>
+                <select asp-for="genreID" asp-items="ViewBag.GenreList" class="form-select"></select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="p-0"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Author" class="p-0"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="price" class="p-0"></label>
+                <input asp-for="price" class="form-control" />
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="imageUrl" class="p-0"></label>
+                <input type="file" name="file" class="form-control" />
+            </div>
+
+
+            @if (Model != null)
+            {
+                <button type="submit" class="btn btn-success" style="width:250px">Save</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success" style="width:250px">Add</button>
+            }
+
+            <a asp-controller="Book" asp-action="Index" class="btn btn-danger" style="width:250px">Cancel</a>
+
+        </div>
+
+        <div class="col-2">
+            @if (Model != null)
+            {
+                if (!String.IsNullOrEmpty(Model.imageUrl))
+                {
+                    <img src="@Model.imageUrl" width="250" style="border-radius:7px; border:1px solid #bbb9b9" />
+                }
+            }
+            
+        </div>
+
     </div>
-    <div class="mb-3">
-        <label asp-for="Title" class="p-0"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
 
-    <div class="mb-3">
-        <label asp-for="genreID" class="p-0">Genre</label>
-        <select asp-for="genreID" asp-items="ViewBag.GenreList" class="form-select"></select>
-        <span asp-validation-for="genreID" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Description" class="p-0"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Author" class="p-0"></label>
-        <input asp-for="Author" class="form-control" />
-        <span asp-validation-for="Author" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="price" class="p-0"></label>
-        <input asp-for="price" class="form-control" />
-        <span asp-validation-for="price" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="imageUrl" class="p-0"></label>
-        <input type="file" class="form-control" />
-    </div>
-
-
-    @if (Model != null)
-    {
-        <button type="submit" class="btn btn-success" style="width:250px">Save</button>
-    }
-    else
-    {
-        <button type="submit" class="btn btn-success" style="width:250px">Edit</button>
-    }
-
-
-
-    <a asp-controller="Book" asp-action="Index" class="btn btn-danger" style="width:250px">Cancel</a>
 
 </form>

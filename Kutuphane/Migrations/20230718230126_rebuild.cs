@@ -5,7 +5,7 @@
 namespace Kutuphane.Migrations
 {
     /// <inheritdoc />
-    public partial class set : Migration
+    public partial class rebuild : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,7 +33,8 @@ namespace Kutuphane.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),
-                    genreID = table.Column<int>(type: "int", nullable: false)
+                    genreID = table.Column<int>(type: "int", nullable: false),
+                    imageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

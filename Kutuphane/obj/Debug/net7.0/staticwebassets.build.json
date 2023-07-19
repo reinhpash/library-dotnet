@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t0X1vZYKOg4rJLInMX3cYqQ7RkluTV9h1w7Z9HNCysE=",
+  "Hash": "vfWKZhBfAobPfsLBE7P+J3kpLB0C5K6a2Yws+GfNwak=",
   "Source": "Kutuphane",
   "BasePath": "_content/Kutuphane",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\C#RECAP\\BlogMVC\\Kutuphane\\Kutuphane\\wwwroot\\img\\alchemist.jpg",
+      "SourceId": "Kutuphane",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\C#RECAP\\BlogMVC\\Kutuphane\\Kutuphane\\wwwroot\\",
+      "BasePath": "_content/Kutuphane",
+      "RelativePath": "img/alchemist.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\alchemist.jpg"
+    },
+    {
+      "Identity": "E:\\C#RECAP\\BlogMVC\\Kutuphane\\Kutuphane\\wwwroot\\img\\hayatBirOyun.jpg",
+      "SourceId": "Kutuphane",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\C#RECAP\\BlogMVC\\Kutuphane\\Kutuphane\\wwwroot\\",
+      "BasePath": "_content/Kutuphane",
+      "RelativePath": "img/hayatBirOyun.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\hayatBirOyun.jpg"
     },
     {
       "Identity": "E:\\C#RECAP\\BlogMVC\\Kutuphane\\Kutuphane\\wwwroot\\js\\site.js",
