@@ -21,28 +21,26 @@
 
     </div>
 
-    <table class="table table-bordered">
+    <table>
         <thead>
             <tr>
-                <th>Cover</th>
-                <th>Book</th>
-                <th>Genre</th>
-                <th>Description</th>
-                <th>Author</th>
-                <th>$Price</th>
-                <th></th>
-                <th></th>
+                <th style="text-align: center; vertical-align: middle;">Cover</th>
+                <th style="text-align: center; vertical-align: middle;">Book</th>
+                <th style="text-align: center; vertical-align: middle;">Genre</th>
+                <th style="text-align: center; vertical-align: middle;">Description</th>
+                <th style="text-align: center; vertical-align: middle;">Author</th>
+                <th style="text-align: center; vertical-align: middle;">Price</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach (var _book in Model)
             {
-                <tr>
+                <tr class="@(Model.IndexOf(_book) % 2 == 0 ? "even-row" : "odd-row")">
                     <td>
                         @if (!String.IsNullOrEmpty(_book.imageUrl))
                         {
-                            <img src="@_book.imageUrl" width="250" style="border-radius:7px; border:1px solid #bbb9b9" />
+                            <img src="@_book.imageUrl" width="250" />
                         }
                     </td>
                     <td style="text-align: center; vertical-align: middle;">@_book.Title</td>
@@ -50,9 +48,10 @@
                     <td style="text-align: center; vertical-align: middle;">@_book.Description</td>
                     <td style="text-align: center; vertical-align: middle;">@_book.Author</td>
                     <td style="text-align: center; vertical-align: middle;">@_book.price</td>
-                    <td style="text-align: center; vertical-align: middle;"><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info d-block">Edit</a></td>
-                    <td style="text-align: center; vertical-align: middle;"><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger d-block">Delete</a></td>
+                    <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info custom-btn" style="width:70px; height: 33.5px; text-align: center; vertical-align: middle;">Edit</a></td>
+                    <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger custom-btn" style="width:70px; height: 33.5px; text-align: center; vertical-align: middle;">Delete</a></td>
                 </tr>
+                <tr style="height: 20px;"></tr>
             }
         </tbody>
     </table>
@@ -63,3 +62,19 @@
         </div>
     </div>
 </div>
+
+<style>
+    .even-row {
+        background-color: #303030;
+    }
+
+    .custom-btn {
+        display: block;
+        width: 100%;
+    }
+
+    .odd-row {
+        background-color: #444444;
+    }
+
+</style>
