@@ -24,6 +24,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>Cover</th>
                 <th>Book</th>
                 <th>Genre</th>
                 <th>Description</th>
@@ -38,13 +39,19 @@
             @foreach (var _book in Model)
             {
                 <tr>
-                    <td>@_book.Title</td>
-                    <td>@_book.bookType.type</td>
-                    <td>@_book.Description</td>
-                    <td>@_book.Author</td>
-                    <td>@_book.price</td>
-                    <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info d-block">Edit</a></td>
-                    <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger d-block">Delete</a></td>
+                    <td>
+                        @if (!String.IsNullOrEmpty(_book.imageUrl))
+                        {
+                            <img src="@_book.imageUrl" width="250" style="border-radius:7px; border:1px solid #bbb9b9" />
+                        }
+                    </td>
+                    <td style="text-align: center; vertical-align: middle;">@_book.Title</td>
+                    <td style="text-align: center; vertical-align: middle;">@_book.bookType.type</td>
+                    <td style="text-align: center; vertical-align: middle;">@_book.Description</td>
+                    <td style="text-align: center; vertical-align: middle;">@_book.Author</td>
+                    <td style="text-align: center; vertical-align: middle;">@_book.price</td>
+                    <td style="text-align: center; vertical-align: middle;"><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info d-block">Edit</a></td>
+                    <td style="text-align: center; vertical-align: middle;"><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger d-block">Delete</a></td>
                 </tr>
             }
         </tbody>
