@@ -5,7 +5,7 @@ namespace Kutuphane.Models
 {
     public class BookType
     {
-        [Key] public int genreID { get; set; } //Key primary key oluşturmamızı sağlıyor.
+        [Key] public int ID { get; set; } //Key primary key oluşturmamızı sağlıyor.
 
         [Required]
         [MaxLength(25)]

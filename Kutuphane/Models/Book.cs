@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,6 +21,6 @@ namespace Kutuphane.Models
         public BookType bookType { get; set; }
 
         [ValidateNever]
-        public string imageUrl { get; set; }
+        [DisplayName("Image")] public string imageUrl { get; set; }
     }
 }

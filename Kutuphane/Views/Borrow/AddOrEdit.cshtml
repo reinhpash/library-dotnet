@@ -1,0 +1,51 @@
+﻿@model Borrow
+
+<form method="post">
+    <div class="row">
+        <div class="col-10">
+            <div class="p-3 mt-5">
+                <h2 class="text-body">@(Model == null ? "Add borrow" : "Edit borrow")</h2>
+            </div>
+            <div class="mb-3">
+                <label asp-for="FirstName" class="p-0"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LastName" class="p-0"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="bookID" class="p-0">Genre</label>
+                <select asp-for="bookID" asp-items="ViewBag.BookList" class="form-select"></select>
+            </div>
+
+            @if (Model != null)
+            {
+                <button type="submit" class="btn btn-success" style="width:250px">Save</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success" style="width:250px">Add</button>
+            }
+
+            <a asp-controller="Borrow" asp-action="Index" class="btn btn-danger" style="width:250px">Cancel</a>
+        </div>
+        <div class="col-2">
+            @if (Model.Book != null)
+            {
+                if (!String.IsNullOrEmpty(Model.Book.imageUrl))
+                {
+                    <img src="@Model.Book.imageUrl" width="250" style="border-radius:7px; border:1px solid #bbb9b9" />
+                }
+            }
+
+        </div>
+    </div>
+
+
+
+
+</form>

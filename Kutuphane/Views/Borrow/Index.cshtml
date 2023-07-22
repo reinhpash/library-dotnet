@@ -1,0 +1,53 @@
+﻿@model List<Borrow>
+
+@if(TempData["succses"] != null)
+{
+    <div id="successMessage" class="alert alert-dismissible alert-success">
+        <strong>Well done! </strong>@TempData["succses"]
+    </div>
+}
+
+<script>
+    setTimeout(function () {
+        document.getElementById("successMessage").style.display = "none";
+    }, 2000);
+</script>
+
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Borrows</h1>
+        </div>
+
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="text-align: center; vertical-align: middle;">First Name</th>
+                <th style="text-align: center; vertical-align: middle;">Last Name</th>
+                <th style="text-align: center; vertical-align: middle;">Book</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var _borrow in Model)
+            {
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;">@_borrow.FirstName</td>
+                    <td style="text-align: center; vertical-align: middle;">@_borrow.LastName</td>
+                    <td style="text-align: center; vertical-align: middle;">@_borrow.Book.Title</td>
+                    <td><a asp-controller="Borrow" asp-action="AddOrEdit" asp-route-ID="@_borrow.ID" type="button" class="btn btn-info">Edit</a></td>
+                    <td><a asp-controller="Borrow" asp-action="Delete" asp-route-ID="@_borrow.ID" type="button" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row pt-3 pb-2">
+        <div>
+            <a asp-controller="Borrow" asp-action="AddOrEdit" class="btn btn-light type" type="button">Add Borrow</a>
+        </div>
+    </div>
+</div>
+

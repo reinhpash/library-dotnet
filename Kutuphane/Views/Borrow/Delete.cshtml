@@ -1,0 +1,25 @@
+﻿@model Borrow
+
+<form method="post">
+    <div class="p-3 mt-5">
+        <h2 class="text-danger">Are you sure you want to delete the borrow ?</h2>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FirstName" class="p-0"></label>
+        <input asp-for="FirstName" disabled class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="p-0"></label>
+        <input asp-for="LastName" disabled class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Book" class="p-0"></label>
+        <select asp-for="bookID" asp-items="ViewBag.bookList" disabled class="form-control"></select>
+    </div>
+
+    <button type="submit" class="btn btn-danger" style="width:250px">Delete</button>
+    <a asp-controller="Borrow" asp-action="Index" type="button" class="btn btn-success" style="width:250px">Cancel</a>
+
+</form>

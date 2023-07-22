@@ -5,12 +5,10 @@ namespace Kutuphane.Utility
 {
     public class LibraryDbContext : DbContext
     {
-        public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
-        {
-            
-        }
+        public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options) { }
 
         public DbSet<BookType> bookTypes { get; set; }
         public DbSet<Book> book { get; set; }
+        public DbSet<Borrow> borrows { get; set; }
     }
 }

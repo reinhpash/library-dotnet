@@ -11,6 +11,7 @@ builder.Services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(
 
 builder.Services.AddScoped<IBookTypeRepository, BookTypeRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBorrowRepository, BorrowRepository>();
 
 var app = builder.Build();
 

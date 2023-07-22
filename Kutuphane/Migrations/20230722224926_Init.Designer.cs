@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kutuphane.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20230718230126_rebuild")]
-    partial class rebuild
+    [Migration("20230722224926_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace Kutuphane.Migrations
 
             modelBuilder.Entity("Kutuphane.Models.Book", b =>
                 {
-                    b.Property<int>("bookID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("bookID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -54,7 +54,7 @@ namespace Kutuphane.Migrations
                     b.Property<double>("price")
                         .HasColumnType("float");
 
-                    b.HasKey("bookID");
+                    b.HasKey("ID");
 
                     b.HasIndex("genreID");
 
@@ -63,20 +63,46 @@ namespace Kutuphane.Migrations
 
             modelBuilder.Entity("Kutuphane.Models.BookType", b =>
                 {
-                    b.Property<int>("genreID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("genreID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("type")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("genreID");
+                    b.HasKey("ID");
 
                     b.ToTable("bookTypes");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Borrow", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("bookID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("bookID");
+
+                    b.ToTable("borrows");
                 });
 
             modelBuilder.Entity("Kutuphane.Models.Book", b =>
@@ -88,6 +114,17 @@ namespace Kutuphane.Migrations
                         .IsRequired();
 
                     b.Navigation("bookType");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Borrow", b =>
+                {
+                    b.HasOne("Kutuphane.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("bookID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
                 });
 #pragma warning restore 612, 618
         }

@@ -30,7 +30,7 @@ namespace Kutuphane.Controllers
             IEnumerable<SelectListItem> bookGenreList = _bookTypeRepository.GetAll().Select(g => new SelectListItem
             {
                 Text = g.type,
-                Value = g.genreID.ToString(),
+                Value = g.ID.ToString(),
 
             }).ToList();
 

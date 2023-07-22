@@ -45,7 +45,7 @@ namespace Kutuphane.Controllers
             if (ID == null || ID == 0)
                 return NotFound();
 
-            BookType? _bookType = _bookTypeRepository.Get(u=> u.genreID == ID);
+            BookType? _bookType = _bookTypeRepository.Get(u=> u.ID == ID);
 
             if (_bookType == null)
                 return NotFound();
@@ -78,7 +78,7 @@ namespace Kutuphane.Controllers
             if (ID == null || ID == 0)
                 return NotFound();
 
-            BookType? _bookType = _bookTypeRepository.Get(u => u.genreID == ID);
+            BookType? _bookType = _bookTypeRepository.Get(u => u.ID == ID);
 
             if (_bookType == null)
                 return NotFound();
@@ -92,7 +92,7 @@ namespace Kutuphane.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            BookType? selectedBookType = _bookTypeRepository.Get(u => u.genreID == id);
+            BookType? selectedBookType = _bookTypeRepository.Get(u => u.ID == id);
 
             if (selectedBookType == null)
                 return NotFound();
