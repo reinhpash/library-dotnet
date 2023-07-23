@@ -33,16 +33,6 @@
 
             <a asp-controller="Borrow" asp-action="Index" class="btn btn-danger" style="width:250px">Cancel</a>
         </div>
-        <div class="col-2">
-            @if (Model.Book != null)
-            {
-                if (!String.IsNullOrEmpty(Model.Book.imageUrl))
-                {
-                    <img src="@Model.Book.imageUrl" width="250" style="border-radius:7px; border:1px solid #bbb9b9" />
-                }
-            }
-
-        </div>
     </div>
 
 
