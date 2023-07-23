@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Kutuphane.Utility;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,16 +26,30 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Borrow" asp-action="Index">Borrows</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="BookType" asp-action="Index">Book genres</a>
-                        </li>
+                        @if (User.IsInRole(UserRoles.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Borrow" asp-action="Index">Borrows</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="BookType" asp-action="Index">Book genres</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole(UserRoles.Role_User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
+                            </li>
+                        }
+                       
                     </ul>
+
+                    <partial name ="_LoginPartial"/>
+
                 </div>
             </div>
         </nav>

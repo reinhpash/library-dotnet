@@ -1,10 +1,13 @@
 ﻿using Kutuphane.Models;
 using Kutuphane.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 
 namespace Kutuphane.Controllers
 {
+    [Authorize(Roles = UserRoles.Role_Admin)]
     public class BorrowController : Controller
     {
         private readonly IBorrowRepository _borrowRepository;

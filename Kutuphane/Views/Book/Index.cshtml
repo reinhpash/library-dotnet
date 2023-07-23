@@ -1,6 +1,7 @@
-﻿@model List<Book>
+﻿@using Kutuphane.Utility;
+@model List<Book>
 
-@if(TempData["succses"] != null)
+@if (TempData["succses"] != null)
 {
     <div id="successMessage" class="alert alert-dismissible alert-success">
         <strong>Well done! </strong>@TempData["succses"]
@@ -48,8 +49,11 @@
                     <td style="text-align: center; vertical-align: middle;">@_book.Description</td>
                     <td style="text-align: center; vertical-align: middle;">@_book.Author</td>
                     <td style="text-align: center; vertical-align: middle;">@_book.price</td>
-                    <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info custom-btn" style="width:70px; height: 33.5px; text-align: center; vertical-align: middle;">Edit</a></td>
-                    <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger custom-btn" style="width:70px; height: 33.5px; text-align: center; vertical-align: middle;">Delete</a></td>
+                    @if (User.IsInRole(UserRoles.Role_Admin))
+                    {
+                        <td><a asp-controller="Book" asp-action="AddOrEdit" asp-route-ID="@_book.ID" type="button" class="btn btn-info custom-btn" style="width:70px; height: 33.5px; text-align: center; vertical-align: middle;">Edit</a></td>
+                        <td><a asp-controller="Book" asp-action="Delete" asp-route-ID="@_book.ID" type="button" class="btn btn-danger custom-btn" style="width:70px; height: 33.5px; text-align: center; vertical-align: middle;">Delete</a></td>
+                    }
                 </tr>
                 <tr style="height: 20px;"></tr>
             }
@@ -57,9 +61,12 @@
     </table>
 
     <div class="row pt-3 pb-2">
-        <div>
-            <a asp-controller="Book" asp-action="AddOrEdit" class="btn btn-light type" type="button">Add Book</a>
-        </div>
+        @if (User.IsInRole(UserRoles.Role_Admin))
+        {
+            <div>
+                <a asp-controller="Book" asp-action="AddOrEdit" class="btn btn-light type" type="button">Add Book</a>
+            </div>
+        }
     </div>
 </div>
 

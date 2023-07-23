@@ -1,5 +1,6 @@
 ﻿using Kutuphane.Models;
 using Kutuphane.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -17,6 +18,9 @@ namespace Kutuphane.Controllers
             _bookTypeRepository = bookTypeRepository;
             _webHostEnvironment = webHostEnvironment;
         }
+
+
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Index()
         {
             //List<Book> book = _bookRepository.GetAll().ToList();
@@ -25,6 +29,8 @@ namespace Kutuphane.Controllers
             return View(book);
         }
 
+
+        [Authorize(Roles = UserRoles.Role_Admin)]
         public IActionResult AddOrEdit(int? ID)
         {
             IEnumerable<SelectListItem> bookGenreList = _bookTypeRepository.GetAll().Select(g => new SelectListItem
@@ -53,6 +59,8 @@ namespace Kutuphane.Controllers
 
         }
 
+
+        [Authorize(Roles = UserRoles.Role_Admin)]
         [HttpPost]
         public IActionResult AddOrEdit(Book _book, IFormFile? file)
         {
@@ -95,25 +103,8 @@ namespace Kutuphane.Controllers
 
         }
 
-        /* [HttpPost]
-         public IActionResult Add(Book _book)
-         {
-             if (ModelState.IsValid)
-             {
-                 _bookRepository.Add(_book);
-                 _bookRepository.Save();
-                 TempData["succses"] = "New book successfully added!";
-                 return RedirectToAction("Index", "Book");
-             }
-             else
-             {
-                 return View();
-             }
 
-         }*/
-
-
-
+        [Authorize(Roles = UserRoles.Role_Admin)]
         public IActionResult Delete(int? ID) //? nullable
         {
             if (ID == null || ID == 0)
@@ -130,6 +121,8 @@ namespace Kutuphane.Controllers
             return View(_book);
         }
 
+
+        [Authorize(Roles = UserRoles.Role_Admin)]
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {

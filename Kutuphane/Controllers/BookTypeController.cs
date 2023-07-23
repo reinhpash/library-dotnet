@@ -1,9 +1,13 @@
 ﻿using Kutuphane.Models;
 using Kutuphane.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Kutuphane.Controllers
 {
+
+    [Authorize(Roles = UserRoles.Role_Admin)]
     public class BookTypeController : Controller
     {
         private readonly IBookTypeRepository _bookTypeRepository;
